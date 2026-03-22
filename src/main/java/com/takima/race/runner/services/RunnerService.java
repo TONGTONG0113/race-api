@@ -21,6 +21,10 @@ public class RunnerService {
         return runnerRepository.findAll();
     }
 
+    public List<Runner> getByFirstName(String firstName) {
+        return runnerRepository.findByFirstName(firstName);
+    }
+
     public Runner getById(Long id) {
         return runnerRepository.findById(id).orElseThrow(() ->
                 new ResponseStatusException(
@@ -28,5 +32,9 @@ public class RunnerService {
                         String.format("Runner %s not found", id)
                 )
         );
+    }
+
+    public Runner create(Runner runner) {
+        return runnerRepository.save(runner);
     }
 }
