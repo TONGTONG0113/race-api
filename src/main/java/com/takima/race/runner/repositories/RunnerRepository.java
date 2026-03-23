@@ -11,4 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface RunnerRepository extends JpaRepository<Runner, Long> {
     List<Runner> findByFirstName(String firstName);
 
+    boolean existsByEmail(String email);
+
 }

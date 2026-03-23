@@ -12,6 +12,7 @@ import java.util.List;
 public class RunnerService {
 
     private final RunnerRepository runnerRepository;
+    
 
     public RunnerService(RunnerRepository runnerRepository) {
         this.runnerRepository = runnerRepository;
@@ -54,6 +55,10 @@ public class RunnerService {
         if (updatedRunner.getEmail()==null || !updatedRunner.getEmail().contains("@")) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"invalid email");   
         }
+        if (runnerRepository.existsByEmail(updatedRunner.getEmail()) && !existing.getEmail().equals(updatedRunner.getEmail())) { //新邮箱不等于旧邮箱，如果不加这个条件 只改姓名和年龄会报错
+    
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Email already exists");
+}
 
         existing.setFirstName(updatedRunner.getFirstName());
         existing.setLastName(updatedRunner.getLastName());
