@@ -36,13 +36,13 @@ public class RunnerController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
     public void deletRunner(@PathVariable Long id){
         runnerService.delet(id);
 
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Runner create(@RequestBody Runner runner) {
         return runnerService.create(runner);
         
