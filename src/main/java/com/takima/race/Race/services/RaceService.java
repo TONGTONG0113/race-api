@@ -51,6 +51,12 @@ public class RaceService {
 
         return registrationRepository.countByRaceId(raceId);
     }
+
+    //PUT
+    public Race update(){
+        return raceRepository.update();
+        
+    }
    
     
 

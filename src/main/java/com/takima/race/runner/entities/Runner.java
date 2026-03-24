@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+@JsonPropertyOrder({"id", "firstName", "lastName", "email", "age"})
 @Entity
 public class Runner {
 
