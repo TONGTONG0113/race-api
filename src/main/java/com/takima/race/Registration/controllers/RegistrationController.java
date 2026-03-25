@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +25,7 @@ public class RegistrationController {
 
     @PostMapping("/{raceId}/registrations")
     @ResponseStatus(HttpStatus.CREATED)
-    public Registration register(@PathVariable Long raceId, @PathVariable Long runnerId){
+    public Registration register(@PathVariable Long raceId, @RequestParam Long runnerId){
 
         return registrationService.register(raceId, runnerId);
     }

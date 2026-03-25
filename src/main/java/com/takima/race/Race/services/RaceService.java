@@ -57,13 +57,13 @@ public class RaceService {
     public Race update(Long id, Race updatedRace){
         Race existing = raceRepository.findById(id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,
                         String.format("Race not found", id)));
-        existing.setId(updatedRace.getId());
+       
         existing.setName(updatedRace.getName());
         existing.setDate(updatedRace.getDate());
         existing.setLocation(updatedRace.getLocation());
         existing.setMaxParticipants(updatedRace.getMaxParticipants());
 
-        return raceRepository.save(updatedRace);
+        return raceRepository.save(existing);
         
     }
    
