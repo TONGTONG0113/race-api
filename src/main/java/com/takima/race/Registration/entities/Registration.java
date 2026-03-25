@@ -15,8 +15,8 @@ public class Registration {
 
     private Long runnerId;
     private Long raceId;
-
     private LocalDate registrationDate;
+
     public Registration() {
     }
     public Registration(Long id, Long runnerId, Long raceId, LocalDate registrationDate) {
