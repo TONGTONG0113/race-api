@@ -46,6 +46,11 @@ public class RaceController {
         return raceService.countParticipants(raceId);
     }
 
+    @GetMapping("/{id}")
+    public Race update(@PathVariable Long id, @PathVariable Race updatedRace){
+        return raceService.update(id, updatedRace);
+    }
+
 
 
 
