@@ -1,5 +1,6 @@
 package com.takima.race.runner.controllers;
 
+import com.takima.race.Registration.entities.Registration;
 import com.takima.race.runner.entities.Runner;
 import com.takima.race.runner.services.RunnerService;
 
@@ -57,5 +58,10 @@ public class RunnerController {
     @GetMapping("/firstName/{firstName}")
     public List<Runner> getByFirstName(@PathVariable String firstName) {
         return runnerService.getByFirstName(firstName);
+    }
+
+    @GetMapping("/{runnerId}/races")
+    public List<Registration> getByRunnerId(@PathVariable Long runnerId){
+        return runnerService.getByRunnerId(runnerId);
     }
 }

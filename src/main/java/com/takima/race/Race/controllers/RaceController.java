@@ -36,8 +36,8 @@ public class RaceController {
         return raceService.getById(id);
     }
 
-    @GetMapping("/{location}")
-    public List<Race> getByLocation(@RequestBody String location){
+    @GetMapping("/location/{location}")
+    public List<Race> getByLocation(@PathVariable String location){
         return raceService.getByLocation(location);
 
     }

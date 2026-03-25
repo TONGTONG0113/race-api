@@ -64,11 +64,7 @@ public class RegistrationService {
         return registrationRepository.findByRaceId(raceId);
     }
 
-    public List<Registration> getByRunnerId(Long runnerId){//pareil que race
-        runnerRepository.findById(runnerId).orElseThrow(()->
-        new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("runner no found")));
-        return registrationRepository.findByRunnerId(runnerId);
-    }
+    
 
     
 

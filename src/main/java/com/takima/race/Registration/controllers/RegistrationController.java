@@ -35,9 +35,6 @@ public class RegistrationController {
         return registrationService.getByRaceId(raceId);
     }
 
-    @GetMapping("/../runners/{runnerId}/races")
-    public List<Registration> getByRunnerId(@PathVariable Long runnerId){
-        return registrationService.getByRunnerId(runnerId);
-    }
+    
 
 }

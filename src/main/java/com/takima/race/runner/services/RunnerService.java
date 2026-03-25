@@ -1,5 +1,7 @@
 package com.takima.race.runner.services;
 
+import com.takima.race.Registration.entities.Registration;
+import com.takima.race.Registration.repositories.RegistrationRepository;
 import com.takima.race.runner.entities.Runner;
 import com.takima.race.runner.repositories.RunnerRepository;
 import org.springframework.http.HttpStatus;
@@ -12,10 +14,14 @@ import java.util.List;
 public class RunnerService {
 
     private final RunnerRepository runnerRepository;
+    private final RegistrationRepository registrationRepository;
     
 
-    public RunnerService(RunnerRepository runnerRepository) {
+    
+
+    public RunnerService(RunnerRepository runnerRepository, RegistrationRepository registrationRepository) {
         this.runnerRepository = runnerRepository;
+        this.registrationRepository = registrationRepository;
     }
 
     //GET /runners
@@ -46,8 +52,11 @@ public class RunnerService {
     }
     //DELETE /runners/{id}
     public void delet(Long id){
+        registrationRepository.deleteAll(registrationRepository.findByRunnerId(id));
+        
         runnerRepository.deleteById(id);
     }
+
     //PUT /runners/{id}
     public Runner update(Long id, Runner updatedRunner){//updateRunner是修改之后的 existing是修改之前的
         Runner existing = runnerRepository.findById(id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,
@@ -58,7 +67,7 @@ public class RunnerService {
         if (runnerRepository.existsByEmail(updatedRunner.getEmail()) && !existing.getEmail().equals(updatedRunner.getEmail())) { //新邮箱不等于旧邮箱，如果不加这个条件 只改姓名和年龄会报错
     
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Email already exists");
-}
+        }
 
         existing.setFirstName(updatedRunner.getFirstName());
         existing.setLastName(updatedRunner.getLastName());
@@ -68,4 +77,17 @@ public class RunnerService {
         
         
     }
+
+    public List<Registration> getByRunnerId(Long runnerId){
+        runnerRepository.findById(runnerId).orElseThrow(()->
+        new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("runner no found")));
+        return registrationRepository.findByRunnerId(runnerId);
+    }
+
+
+
+
+
+
+
 }
