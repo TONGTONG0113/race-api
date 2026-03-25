@@ -39,6 +39,11 @@ public class RaceService {
         );
     }
 
+    //GET /Location
+    public List<Race> getByLocation(String location){
+        return raceRepository.findByLocation(location);
+    }
+
     //POST
     public Race create(Race race) {
         return raceRepository.save(race);
@@ -57,7 +62,7 @@ public class RaceService {
     public Race update(Long id, Race updatedRace){
         Race existing = raceRepository.findById(id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,
                         String.format("Race not found", id)));
-       
+        
         existing.setName(updatedRace.getName());
         existing.setDate(updatedRace.getDate());
         existing.setLocation(updatedRace.getLocation());

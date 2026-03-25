@@ -36,6 +36,12 @@ public class RaceController {
         return raceService.getById(id);
     }
 
+    @GetMapping("/{location}")
+    public List<Race> getByLocation(@RequestBody String location){
+        return raceService.getByLocation(location);
+
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Race creat(@RequestBody Race race){
